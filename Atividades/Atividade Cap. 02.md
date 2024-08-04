@@ -56,11 +56,93 @@ Os valores de \( a \) que são permitidos são aqueles que são coprimos com 26,
 
 3. **(a) Encripte a mensagem "meet me at the usual place at ten rather than eight o'clock" usando a cifra de Hill com a chave \( \begin{bmatrix} 9 & 4 \\ 5 & 7 \end{bmatrix} \). Mostre seus cálculos e o resultado.**
 
-   **(b) Mostre os cálculos para a decriptação correspondente do texto cifrado a fim de recuperar o texto claro original.**
+### (a) Encriptação da mensagem usando a cifra de Hill
+
+1. **Preparação da mensagem**:
+   - Mensagem original: "meet me at the usual place at ten rather than eight oclock"
+   - Mensagem sem espaços: "meetmeattheusualplaceattenratherthaneightoclock"
+   - Adiciona 'X' no final para obter um número par de letras: "meetmeattheusualplaceattenratherthaneightoclockx"
+
+2. **Conversão para números**:
+   ```
+   m = 12, e = 4, e = 4, t = 19, m = 12, e = 4, a = 0, t = 19, t = 19, h = 7, e = 4, u = 20, s = 18, u = 20, a = 0, l = 11, p = 15, l = 11, a = 0, c = 2, e = 4, a = 0, t = 19, t = 19, e = 4, n = 13, r = 17, a = 0, t = 19, h = 7, a = 0, n = 13, e = 4, i = 8, g = 6, h = 7, t = 19, o = 14, c = 2, l = 11, o = 14, c = 2, k = 10, x = 23
+   ```
+
+3. **Agrupar em pares e multiplicar pela chave**:
+   Para cada par \(\begin{bmatrix} p1 \\ p2 \end{bmatrix}\):
+   \[
+   \begin{bmatrix} C1 \\ C2 \end{bmatrix} = \begin{bmatrix} 9 & 4 \\ 5 & 7 \end{bmatrix} \begin{bmatrix} p1 \\ p2 \end{bmatrix} \mod 26
+   \]
+
+   - "me" (12, 4):
+     \[
+     \begin{bmatrix} 9 & 4 \\ 5 & 7 \end{bmatrix} \begin{bmatrix} 12 \\ 4 \end{bmatrix} = \begin{bmatrix} (9 \cdot 12 + 4 \cdot 4) \\ (5 \cdot 12 + 7 \cdot 4) \end{bmatrix} \mod 26 = \begin{bmatrix} 124 \\ 104 \end{bmatrix} \mod 26 = \begin{bmatrix} 20 \\ 0 \end{bmatrix}
+     \]
+     "20" é "U" e "0" é "A".
+
+   Repetindo o processo para todos os pares:
+   ```
+   "me" -> UA
+   "et" -> HW
+   "me" -> UA
+   "at" -> ND
+   "th" -> IP
+   "eu" -> XL
+   "su" -> MH
+   "al" -> PH
+   "pl" -> QH
+   "ac" -> KR
+   "et" -> HW
+   "te" -> XE
+   "nr" -> KL
+   "at" -> ND
+   "he" -> PW
+   "an" -> JX
+   "ei" -> XC
+   "gh" -> PY
+   "to" -> YQ
+   "cl" -> DL
+   "oc" -> OC
+   "kx" -> UP
+   ```
+
+4. **Mensagem cifrada**:
+   ```
+   UAHWUA NDIPXLM HPHQHK RHWXEK LNDPWJ XCXPY YQDL OCUP
+   ```
+
+**(b) Mostre os cálculos para a decriptação correspondente do texto cifrado a fim de recuperar o texto claro original.**
+
+Para decriptar a mensagem cifrada, precisamos da matriz inversa da chave usada:
+
+1. **Encontrar a matriz inversa da chave**:
+- Matriz chave: \(\begin{bmatrix} 9 & 4 \\ 5 & 7 \end{bmatrix}\)
+- Determinante: \(\det(A) = (9 \cdot 7 - 5 \cdot 4) \mod 26 = 17\)
+- Inverso de 17 módulo 26 é 23.
+- Matriz adjunta: \(\begin{bmatrix} 7 & -4 \\ -5 & 9 \end{bmatrix} = \begin{bmatrix} 7 & 22 \\ 21 & 9 \end{bmatrix}\)
+- Inversa da matriz: \(A^{-1} = 23 \begin{bmatrix} 7 & 22 \\ 21 & 9 \end{bmatrix} \mod 26 = \begin{bmatrix} 11 & 14 \\ 1 & 17 \end{bmatrix}\)
+
+2. **Decriptar cada par de letras**:
+Para cada par \(\begin{bmatrix} C1 \\ C2 \end{bmatrix}\):
+\[
+\begin{bmatrix} p1 \\ p2 \end{bmatrix} = \begin{bmatrix} 11 & 14 \\ 1 & 17 \end{bmatrix} \begin{bmatrix} C1 \\ C2 \end{bmatrix} \mod 26
+\]
+
+Exemplos:
+- "UA" (20, 0):
+  \[
+  \begin{bmatrix} p1 \\ p2 \end{bmatrix} = \begin{bmatrix} 11 & 14 \\ 1 & 17 \end{bmatrix} \begin{bmatrix} 20 \\ 0 \end{bmatrix} = \begin{bmatrix} 220 \\ 20 \end{bmatrix} \mod 26 = \begin{bmatrix} 12 \\ 4 \end{bmatrix}
+  \]
+  "12" é "M" e "4" é "E".
+
+Repetindo o processo para todos os pares:
 
 
-4. **Elabore um programa que possa encriptar e decriptar usando a cifra de César geral, também conhecida como cifra aditiva.**
 
-5. **Elabore um programa que possa realizar um ataque de frequência de letra em uma cifra aditiva sem intervenção humana. Seu software deverá produzir textos claros possíveis em ordem aproximada de probabilidade. Seria bom se a sua interface com o usuário permitisse que ele especificasse "mostre os 10 textos claros mais prováveis".**
 
-6. **Crie um software que possa encriptar e decriptar usando uma cifra de Hill 2 × 2.**
+
+5. **Elabore um programa que possa encriptar e decriptar usando a cifra de César geral, também conhecida como cifra aditiva.**
+
+6. **Elabore um programa que possa realizar um ataque de frequência de letra em uma cifra aditiva sem intervenção humana. Seu software deverá produzir textos claros possíveis em ordem aproximada de probabilidade. Seria bom se a sua interface com o usuário permitisse que ele especificasse "mostre os 10 textos claros mais prováveis".**
+
+7. **Crie um software que possa encriptar e decriptar usando uma cifra de Hill 2 × 2.**
