@@ -18,14 +18,28 @@ Av. Bom Pastor s/n - Boa Vista
 
 Questões retiradas do livro-texto da disciplina.
 
-1. **Responda (de forma objetiva) as questões a seguir:**
-   a. Quais são os elementos essenciais de uma cifra simétrica? 
-   b. Quais são as duas funções básicas usadas nos algoritmos de encriptação?  
-   c. Qual é a diferença entre uma cifra de bloco e uma cifra de fluxo?  
-   d. Quais são as duas técnicas gerais para atacar uma cifra?  
-   e. Quais são os dois problemas com o one-time pad?  
-   f. O que é uma cifra de transposição?  
-   g. O que é esteganografia?  
+1. Responda (de forma objetiva) as questões a seguir:
+
+   (a) **Quais são os elementos essenciais de uma cifra simétrica?**  
+   Os elementos essenciais de uma cifra simétrica são a chave secreta compartilhada entre as partes envolvidas e o algoritmo de encriptação/decriptação.
+
+   (b) **Quais são as duas funções básicas usadas nos algoritmos de encriptação?**  
+   Substituição e transposição.
+
+   (c) **Qual é a diferença entre uma cifra de bloco e uma cifra de fluxo?**  
+   Uma cifra de bloco encripta dados em blocos de tamanho fixo (por exemplo, 64 ou 128 bits), enquanto uma cifra de fluxo encripta dados um bit ou byte de cada vez.
+
+   (d) **Quais são as duas técnicas gerais para atacar uma cifra?**  
+   Criptoanálise e ataque de força bruta.
+
+   (e) **Quais são os dois problemas com o one-time pad?**  
+   A necessidade de uma chave verdadeiramente aleatória do mesmo tamanho da mensagem e a dificuldade de distribuir e gerenciar essas chaves de forma segura.
+
+   (f) **O que é uma cifra de transposição?**  
+   Uma cifra que rearranja os caracteres na mensagem original de acordo com uma regra específica, sem alterar os caracteres em si.
+
+   (g) **O que é esteganografia?**  
+   A prática de ocultar a existência de uma mensagem, escondendo dados dentro de outros arquivos, como imagens, áudio ou vídeo, de forma que não seja perceptível.
 
 2. **Uma generalização da cifra de César, conhecida como cifra de César afim, tem a seguinte forma:**
    - A cada letra de texto claro \( p \), substitua-a pela letra de texto cifrado \( C \):
