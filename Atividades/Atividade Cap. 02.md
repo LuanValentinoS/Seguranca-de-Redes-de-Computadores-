@@ -41,16 +41,18 @@ Questões retiradas do livro-texto da disciplina.
    (g) **O que é esteganografia?**  
    A prática de ocultar a existência de uma mensagem, escondendo dados dentro de outros arquivos, como imagens, áudio ou vídeo, de forma que não seja perceptível.
 
-2. **Uma generalização da cifra de César, conhecida como cifra de César afim, tem a seguinte forma:**
-   - A cada letra de texto claro \( p \), substitua-a pela letra de texto cifrado \( C \):
-     \[
-     C = E([a, b], p) = (ap + b) \mod 26
-     \]
-   - Um requisito básico de qualquer algoritmo de encriptação é que ele seja um para um. Ou seja, se \( p \neq q \), então \( E(k, p) \neq E(k, q) \). Caso contrário, a decriptação é impossível, pois mais de um caractere de texto claro é mapeado no mesmo caractere de texto cifrado. A cifra de César afim não é um-para-um para todos os valores de \( a \). Por exemplo, para \( a = 2 \) e \( b = 3 \), então \( E([a, b], 0) = E([a, b], 13) = 3 \).
+2. Uma generalização da cifra de César, conhecida como cifra de César afim, tem a seguinte forma: a cada letra de texto claro \( p \), substitua-a pela letra de texto cifrado \( C \):
+\[ C = E([a, b], p) = (ap + b) \mod 26 \]
+Um requisito básico de qualquer algoritmo de encriptação é que ele seja um para um. Ou seja, se \( p \neq q \), então \( E(k, p) \neq E(k, q) \). Caso contrário, a decriptação é impossível, pois mais de um caractere de texto claro é mapeado no mesmo caractere de texto cifrado. A cifra de César afim não é um-para-um para todos os valores de \( a \). Por exemplo, para \( a = 2 \) e \( b = 3 \), então \( E([a, b], 0) = E([a, b], 13) = 3 \).
 
-   a. Existem limitações sobre o valor de \( b \)? Explique por que sim ou por que não.  
-   b. Determine quais valores de \( a \) não são permitidos.  
-   c. Ofereça uma afirmação geral sobre quais valores de \( a \) são e não são permitidos. Justifique-a.
+(a) **Existem limitações sobre o valor de \( b \)? Explique por que sim ou por que não.**  
+Não, não existem limitações sobre o valor de \( b \). O valor de \( b \) realiza apenas um deslocamento aditivo no resultado da multiplicação \( ap \). O valor de \( b \) não afeta a propriedade de ser um-para-um da função de encriptação. A propriedade de ser um-para-um depende exclusivamente do valor de \( a \). Para que a cifra de César afim seja um-para-um, é necessário que a função \( ap \mod 26 \) seja uma bijeção. Isso é garantido quando \( a \) é coprimo com 26, mas o valor de \( b \) pode ser qualquer número inteiro entre 0 e 25.
+
+(b) **Determine quais valores de \( a \) não são permitidos.**  
+Os valores de \( a \) que não são permitidos são aqueles que não são coprimos com 26. Em outras palavras, se \( a \) e 26 compartilham algum fator comum além de 1, então \( a \) não é permitido. Para que \( ap \mod 26 \) seja uma função um-para-um, \( a \) deve ter um inverso multiplicativo módulo 26. Isso só acontece se \( a \) for coprimo com 26, ou seja, \( \text{gcd}(a, 26) = 1 \). Portanto, os valores de \( a \) não permitidos são aqueles que compartilham os fatores primos de 26, que são 2 e 13. Assim, os valores de \( a \) não permitidos são múltiplos de 2 ou 13: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22 e 24.
+
+(c) **Ofereça uma afirmação geral sobre quais valores de \( a \) são e não são permitidos. Justifique-a.**  
+Os valores de \( a \) que são permitidos são aqueles que são coprimos com 26, ou seja, \( \text{gcd}(a, 26) = 1 \). Para que a função de encriptação \( (ap + b) \mod 26 \) seja um-para-um, \( a \) deve ter um inverso multiplicativo módulo 26. Isso significa que \( a \) e 26 não podem ter nenhum divisor comum além de 1. Em outras palavras, \( a \) deve ser coprimo com 26. Os fatores primos de 26 são 2 e 13, então qualquer \( a \) que não seja múltiplo de 2 ou 13 será coprimo com 26. Portanto, os valores permitidos de \( a \) são: 1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23 e 25. Esses valores garantem que a cifra de César afim será um-para-um e, portanto, permitirá uma decriptação correta.
 
 3. **(a) Encripte a mensagem "meet me at the usual place at ten rather than eight o'clock" usando a cifra de Hill com a chave \( \begin{bmatrix} 9 & 4 \\ 5 & 7 \end{bmatrix} \). Mostre seus cálculos e o resultado.**
 
